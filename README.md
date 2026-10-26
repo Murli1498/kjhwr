@@ -12,7 +12,7 @@ Docker is the supported way to run the whole app:
 docker compose up --build
 ```
 
-Then open http://localhost:8000.
+Then open http://localhost:8000. The first response can take about twenty seconds while the image starts.
 
 Without Docker, from the repository root:
 
@@ -45,15 +45,19 @@ python scripts/fetch_elexon.py
 
 API reference is at http://localhost:8000/docs once the server is up.
 
+## Repository
+
+Public: https://github.com/Murli1498/kjhwr
+
 ## Hosted app
 
-Not published yet. This machine had Docker and the app, and neither the Vercel CLI nor the Heroku CLI was logged in, and the GitHub token on the machine was no longer valid. After `npx vercel login` or `heroku login`:
+Not on Vercel or Heroku yet. The app runs in Docker, and `vercel.json` plus `api/index.py` are the Vercel entry. This environment has no Vercel token and no Heroku login, so the deploy step needs an account. From the repository root, after `npx vercel login`:
 
 ```bash
 npx vercel --prod
 ```
 
-or, with the Heroku container stack and `heroku.yml` already in the repo:
+Or, with the Heroku container stack and `heroku.yml`:
 
 ```bash
 heroku container:login
@@ -63,7 +67,7 @@ heroku container:push web
 heroku container:release web
 ```
 
-Put the resulting URL here once it is live, and open it in a private window before submitting the form.
+Replace this section with the live URL, then open that URL in a private window before submitting the form.
 
 ## Video
 
@@ -93,6 +97,7 @@ Record one unlisted YouTube video, at most 10 minutes, in two parts. The evaluat
 | `data/elexon_january_2026.json` | FUELHH wind from 30 December 2025 through 31 January 2026, and WINDFOR publications from 30 December through 31 January |
 | `scripts/fetch_elexon.py` | Rebuilds that snapshot from the Elexon stream endpoints |
 | `Dockerfile`, `docker-compose.yml` | One image: UI build, then the API |
+| `api/index.py`, `vercel.json` | Vercel entry: the same FastAPI app, plus the built UI |
 | `heroku.yml` | Same image, for the Heroku container stack |
 | `requirements.txt`, `requirements-dev.txt` | Runtime and test dependencies |
 | `.github/workflows/test.yml` | Pytest, and a frontend production build |
