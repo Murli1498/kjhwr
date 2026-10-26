@@ -51,23 +51,13 @@ Public: https://github.com/Murli1498/kjhwr
 
 ## Hosted app
 
-Not on Vercel or Heroku yet. The app runs in Docker, and `vercel.json` plus `api/index.py` are the Vercel entry. This environment has no Vercel token and no Heroku login, so the deploy step needs an account. From the repository root, after `npx vercel login`:
+https://kjhwr-iota.vercel.app
+
+Open that URL in a private window before submitting the form. Redeploy from the repository root with:
 
 ```bash
 npx vercel --prod
 ```
-
-Or, with the Heroku container stack and `heroku.yml`:
-
-```bash
-heroku container:login
-heroku create
-heroku stack:set container
-heroku container:push web
-heroku container:release web
-```
-
-Replace this section with the live URL, then open that URL in a private window before submitting the form.
 
 ## Video
 
